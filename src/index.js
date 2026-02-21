@@ -1,9 +1,26 @@
 import fs from 'fs'
 const caminhoArquivo = process.argv[2]
 
-const texto = fs.readFileSync(caminhoArquivo, 'utf-8')
-//verficaPalavras(texto)
-quebraParagrafos(texto)
+fs.readFile(caminhoArquivo, 'utf-8', (erro, texto) => {
+    if(erro){
+        console.log(erro.code)
+        return
+    }
+    contaPalavras(texto)
+})
+
+function contaPalavras(texto){
+    const paragrafos = extraiParagrafo(texto)
+    // o javascript retorna false para uma string vazia, por isso funciona
+    const contagem = paragrafos.filter((p) => p).map((elementos) => {
+        return verficaPalavras(elementos)
+    })
+    console.log(contagem)
+}
+
+function extraiParagrafo(texto){
+    return texto.toLowerCase().replace('(', '').replace(')', '').split('\n');
+}
 
 function verficaPalavras(texto){
     const textoDividido = texto.split(' ')
@@ -17,12 +34,4 @@ function verficaPalavras(texto){
     return resultado
     // includes não vai funcionar. ideia primária é usar uma função que conta quantas vezes a palavra aparece, se for mais que 2 vai retornar essa palavra e quantas vezes ela apareceu
     // ideia secundária: fazer outro for dentro deste de cada valor de textoDividido, e comparar com o o valor, se for igual adiciona em um array
-}
-
-function quebraParagrafos(texto){
-    const paragrafos = texto.toLowerCase().replace('(', '').replace(')', '').split('\n');
-    const contagem = paragrafos.map((elementos) => {
-        return verficaPalavras(elementos)
-    })
-    console.log(contagem)
 }
