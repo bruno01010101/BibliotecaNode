@@ -4,7 +4,7 @@ export function contaPalavras(texto){
     const contagem = paragrafos.filter((p) => p).map((elementos) => {
         return verficaPalavras(elementos)
     })
-    console.log(contagem)
+    return contagem
 }
 
 function extraiParagrafo(texto){
