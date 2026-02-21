@@ -1,15 +1,4 @@
-import fs from 'fs'
-const caminhoArquivo = process.argv[2]
-
-fs.readFile(caminhoArquivo, 'utf-8', (erro, texto) => {
-    if(erro){
-        console.log(erro.code)
-        return
-    }
-    contaPalavras(texto)
-})
-
-function contaPalavras(texto){
+export function contaPalavras(texto){
     const paragrafos = extraiParagrafo(texto)
     // o javascript retorna false para uma string vazia, por isso funciona
     const contagem = paragrafos.filter((p) => p).map((elementos) => {
