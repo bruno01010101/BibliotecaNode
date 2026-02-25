@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/bruno01010101/BibliotecaNode/issues"
   },
-  "homepage": "https://github.com/bruno01010101/BibliotecaNode#readme"
+  "homepage": "https://github.com/bruno01010101/BibliotecaNode#readme",
+  "dependencies": {
+    "commander": "^14.0.3"
+  }
 }
